@@ -1,0 +1,56 @@
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.no-recipes mat-card {
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.recipe-list {
+  padding-bottom: 20px;
+}
+
+mat-accordion {
+  width: 100%;
+  margin-top: 20px;
+}
+
+mat-expansion-panel {
+  margin-bottom: 10px;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.recipe-details {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 9px;
+  color: rgb(56, 0, 59);
+}
+
+/* Стиль для каждого элемента ингредиента */
+.ingredient-item {
+  font-size: 16px;
+  color: #333; /* По умолчанию темный цвет */
+}
+
+/* Цвет для имени ингредиента */
+.ingredient-name {
+  color: #070223;
+  font-weight: bold;
+}
+
+/* Цвет для количества и единицы измерения */
+.ingredient-quantity {
+  color: #070223;
+  margin-left: 8px;
+}
