@@ -1,0 +1,68 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="recipe-form">
+  <mat-card>
+    <mat-card-title>{{
+      recipeForm.get("id")?.value
+        ? "Редактировать рецепт"
+        : "Создать новый рецепт"
+    }}</mat-card-title>
+    <mat-card-content>
+      <div class="name-description-recipe">
+        <mat-form-field appearance="fill">
+          <mat-label>Название рецепта</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Описание</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div formArrayName="ingredients">
+        <mat-card-subtitle>Ингредиенты</mat-card-subtitle>
+        <div
+          *ngFor="let ingredient of ingredients.controls; let i = index"
+          [formGroupName]="i"
+          class="ingredient-group"
+        >
+          <mat-form-field appearance="fill">
+            <mat-label>Название ингредиента</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Количество</mat-label>
+            <input matInput type="number" formControlName="quantity" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Единица измерения</mat-label>
+            <mat-select formControlName="unit">
+              <mat-option *ngFor="let unit of units" [value]="unit">
+                {{ unit }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-fab (click)="removeIngredient(i)">🗑️</button>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="addIngredient()">
+        Добавить ингредиент
+      </button>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!recipeForm.valid"
+      >
+        {{
+          recipeForm.get("id")?.value ? "Сохранить изменения" : "Создать рецепт"
+        }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
