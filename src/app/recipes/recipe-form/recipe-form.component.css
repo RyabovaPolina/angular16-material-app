@@ -1,0 +1,60 @@
+.recipe-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+mat-card-title {
+  color: white;
+  margin: 16px;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.name-description-recipe {
+  display: flex;
+  gap: 16px;
+}
+
+.ingredient-group {
+  display: flex;
+  gap: 16px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center; /* Выравниваем по центру */
+  padding: 16px 0; /* Отступы для лучшего внешнего вида */
+}
+
+mat-card-subtitle {
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  width: 200px; /* Ширина кнопки для большего размера */
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  padding: 12px; /* Увеличиваем отступы внутри кнопки */
+  margin-top: 16px; /* Добавляем отступ сверху */
+  transition: transform 0.2s ease; /* Плавный эффект при наведении */
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.1); /* Увеличиваем кнопку при наведении */
+}
+
+button.mat-raised-button {
+  margin-top: 8px; /* Небольшой отступ сверху для кнопки добавления ингредиента */
+}
+
+button.mat-raised-button.color-primary {
+  width: 180px; /* Уменьшаем кнопку для добавления ингредиента */
+  font-size: 14px;
+}
