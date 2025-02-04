@@ -18,6 +18,9 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeService.recipes$.subscribe(
+      // Подписывается (subscribe) на изменения списка рецептов из RecipeService.
+      // когда в сервисе изменяется recipesSubject, этот компонент автоматически получает новый список рецептов
+      // и обновляет отображение.
       (recipes) => {
         this.recipes = recipes;
         this.loading = false;
@@ -37,6 +40,7 @@ export class RecipeListComponent implements OnInit {
 
   editRecipe(recipe: Recipe): void {
     this.recipeService.editingRecipe$.next(recipe); // Передаём рецепт в поток
+    //отправляет (эмитит) новое значение всем подписчикам.
   }
   deleteRecipe(recipe: Recipe): void {
     this.recipeService.deleteRecipe(recipe); // Передаём рецепт в поток
