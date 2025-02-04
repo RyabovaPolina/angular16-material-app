@@ -31,6 +31,8 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
 
     // Подписка на редактируемый рецепт
     this.subscription = this.recipeService.editingRecipe$.subscribe(
+      //Подписывается на editingRecipe$ из RecipeService, чтобы загружать данные в форму
+      // при редактировании рецепта
       (recipe) => {
         if (recipe) {
           this.populateForm(recipe); // Заполняем форму для редактирования
