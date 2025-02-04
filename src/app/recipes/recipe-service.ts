@@ -8,7 +8,6 @@ import { LocalStorageService } from './local-storage-service';
   providedIn: 'root', // Это значит, что сервис доступен в любом месте приложения
 })
 export class RecipeService {
-  // Это временные данные. В реальном приложении данные могут поступать из API.
   private recipes: Recipe[] = [
     {
       id: 1,
@@ -26,7 +25,8 @@ export class RecipeService {
     },
   ];
 
-  private recipesSubject = new BehaviorSubject<Recipe[]>(this.recipes);
+  private recipesSubject = new BehaviorSubject<Recipe[]>(this.recipes); //нужен для автоматического обновления
+
   get recipes$(): Observable<Recipe[]> {
     return this.recipesSubject.asObservable(); // Возвращаем Observable, чтобы подписчики могли читать, но не менять поток
   }
