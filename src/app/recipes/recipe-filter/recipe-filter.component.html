@@ -1,0 +1,27 @@
+<div class="filters">
+  <!-- Кнопки фильтров для больших экранов -->
+  <div class="category-buttons" *ngIf="isLargeScreen">
+    <button
+      *ngFor="let category of categories"
+      [class.active]="category === selectedCategory"
+      (click)="onCategoryChange(category)"
+    >
+      {{ category }}
+    </button>
+  </div>
+
+  <!-- Для маленьких экранов отображаем кнопку и dropdown -->
+  <div class="dropdown" *ngIf="!isLargeScreen">
+    <button (click)="toggleDropdown()">Применить фильтр</button>
+    <div *ngIf="isDropdownVisible">
+      <select
+        *ngIf="categories && categories.length > 0"
+        (change)="onCategoryChange2($event)"
+      >
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

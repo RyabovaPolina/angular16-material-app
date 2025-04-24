@@ -1,0 +1,52 @@
+.filters {
+  margin-bottom: 15px;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap; /* Для лучшего расположения на маленьких экранах */
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid #fc9065;
+  background-color: white;
+  color: #361313;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "IBM Plex Mono", serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #f9946d;
+  color: white;
+}
+
+button.active {
+  background-color: #fc9065;
+  color: white;
+}
+
+.dropdown {
+  display: none; /* Скрываем dropdown на больших экранах */
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  .category-buttons {
+    display: none; /* Скрываем кнопки */
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dropdown {
+    display: block; /* Показываем dropdown */
+  }
+}

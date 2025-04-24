@@ -1,66 +1,34 @@
-<div *ngIf="loading" class="loading-spinner">
-  <mat-progress-spinner
-    color="primary"
-    mode="indeterminate"
-    diameter="50"
-  ></mat-progress-spinner>
+<div class="top">
+  <app-recipe-search (searchEvent)="onSearch($event)"></app-recipe-search>
 </div>
 
-<div *ngIf="!loading && recipes.length === 0" class="no-recipes">
-  <mat-card>
-    <mat-card-content>
-      <p>Рецепты не найдены.</p>
-    </mat-card-content>
-  </mat-card>
+<div class="filters">
+  <app-recipe-filter
+    (categoryChange)="onCategoryChange($event)"
+  ></app-recipe-filter>
 </div>
 
 <div *ngIf="!loading && recipes.length > 0" class="recipe-list">
   <h2>Список рецептов</h2>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let recipe of recipes">
-      <mat-expansion-panel-header>
-        <mat-panel-title>{{ recipe.title }}</mat-panel-title>
-      </mat-expansion-panel-header>
 
-      <div class="recipe-actions">
-        <button mat-raised-button color="primary" (click)="editRecipe(recipe)">
-          Редактировать
-        </button>
-        <button
-          mat-raised-button
-          color="accent"
-          (click)="toggleRecipeDetails(recipe.id)"
-        >
-          {{ selectedRecipeId === recipe.id ? "Скрыть" : "Посмотреть" }}
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="deleteRecipe(recipe)"
-        >
-          Удалить
-        </button>
+  <div class="recipe-grid">
+    <div
+      *ngFor="let recipe of recipes"
+      class="recipe-card"
+      (click)="goToRecipe(recipe.id)"
+    >
+      <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image" />
+
+      <div class="recipe-flag">
+        <img [src]="getFlagUrl(recipe.category)" alt="Flag" class="flag-icon" />
       </div>
 
-      <!-- Детали рецепта -->
-      <div *ngIf="selectedRecipeId === recipe.id" class="recipe-details">
-        <p><strong>Ингредиенты:</strong></p>
-
-        <!-- Список ингредиентов -->
-        <mat-list class="ingredients-list">
-          <mat-list-item
-            *ngFor="let ingredient of recipe.ingredients"
-            class="ingredient-item"
-          >
-            <span class="ingredient-name">{{ ingredient.name }}</span>
-            <span class="ingredient-quantity"
-              >{{ ingredient.quantity }} {{ ingredient.unit }}</span
-            >
-          </mat-list-item>
-        </mat-list>
-
-        <p><strong>Описание:</strong> {{ recipe.description }}</p>
+      <div class="recipe-info">
+        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <p class="recipe-ingredients">
+          {{ getIngredientNames(recipe.ingredients) }}
+        </p>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </div>
+  </div>
 </div>

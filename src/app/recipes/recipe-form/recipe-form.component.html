@@ -1,68 +1,142 @@
-<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="recipe-form">
-  <mat-card>
-    <mat-card-title>{{
-      recipeForm.get("id")?.value
-        ? "Редактировать рецепт"
-        : "Создать новый рецепт"
-    }}</mat-card-title>
-    <mat-card-content>
-      <div class="name-description-recipe">
-        <mat-form-field appearance="fill">
-          <mat-label>Название рецепта</mat-label>
-          <input matInput formControlName="title" />
-        </mat-form-field>
+<div class="button-area">
+  <a href="#" class="back-link" (click)="goBack()">← Назад к списку</a>
+</div>
+<div class="container">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="recipe-form">
+    <div class="recipe-card">
+      <h2 class="recipe-title">
+        {{
+          recipeForm.get("id")?.value
+            ? "Редактировать рецепт"
+            : "Создать новый рецепт"
+        }}
+      </h2>
+      <div class="recipe-content">
+        <div class="name-description-recipe">
+          <div class="container-common">
+            <label for="title">Название рецепта</label>
+            <input id="title" type="text" formControlName="title" />
+          </div>
+          <div class="container-common">
+            <label for="image">Добавить фотографию</label>
+            <input
+              id="image"
+              type="file"
+              (change)="onFileSelected($event)"
+              accept="image/*"
+            />
+            <div *ngIf="imagePreview" class="image-preview">
+              <img [src]="imagePreview" alt="Предпросмотр изображения" />
+              <button type="button" (click)="clearImage()">Удалить</button>
+            </div>
+            <div *ngIf="imageError" class="error-message">
+              Изображение должно быть размером 700x700 пикселей.
+            </div>
+          </div>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Описание</mat-label>
-          <textarea matInput formControlName="description"></textarea>
-        </mat-form-field>
-      </div>
+          <div class="container-common">
+            <label for="description">Описание</label>
+            <textarea id="description" formControlName="description"></textarea>
+          </div>
+          <div class="container-common">
+            <label for="category">Категория</label>
+            <select formControlName="category">
+              <option *ngFor="let category of categories" [value]="category">
+                {{ category }}
+              </option>
+            </select>
+          </div>
+        </div>
 
-      <div formArrayName="ingredients">
-        <mat-card-subtitle>Ингредиенты</mat-card-subtitle>
-        <div
-          *ngFor="let ingredient of ingredients.controls; let i = index"
-          [formGroupName]="i"
-          class="ingredient-group"
-        >
-          <mat-form-field appearance="fill">
-            <mat-label>Название ингредиента</mat-label>
-            <input matInput formControlName="name" />
-          </mat-form-field>
+        <div class="recipe-details">
+          <div class="container-common">
+            <label for="cookingTime">Время приготовления</label>
+            <input id="cookingTime" type="text" formControlName="cookingTime" />
+          </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Количество</mat-label>
-            <input matInput type="number" formControlName="quantity" />
-          </mat-form-field>
+          <div class="container-common">
+            <label for="servings">Количество порций</label>
+            <input id="servings" type="number" formControlName="servings" />
+          </div>
+        </div>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Единица измерения</mat-label>
-            <mat-select formControlName="unit">
-              <mat-option *ngFor="let unit of units" [value]="unit">
-                {{ unit }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div formArrayName="ingredients" class="ingredients-section">
+          <h3>Ингредиенты</h3>
+          <div
+            *ngFor="let ingredient of ingredients.controls; let i = index"
+            [formGroupName]="i"
+            class="ingredient-group"
+          >
+            <div class="first">
+              <label for="name-{{ i }}" class="recipe-form-label"
+                >Название ингредиента</label
+              >
+              <input id="name-{{ i }}" type="text" formControlName="name" />
+            </div>
 
-          <button mat-fab (click)="removeIngredient(i)">🗑️</button>
+            <div class="second">
+              <label for="quantity-{{ i }} " class="recipe-form-label"
+                >Количество</label
+              >
+              <input
+                id="quantity-{{ i }}"
+                type="number"
+                formControlName="quantity"
+              />
+            </div>
+
+            <div class="third">
+              <label for="unit-{{ i }}" class="recipe-form-label"
+                >Ед. измерения</label
+              >
+              <select id="unit-{{ i }}" formControlName="unit">
+                <option *ngFor="let unit of units" [value]="unit">
+                  {{ unit }}
+                </option>
+              </select>
+            </div>
+
+            <button type="button" (click)="removeIngredient(i)">Удалить</button>
+          </div>
+
+          <button type="button" (click)="addIngredient()" class="btn-adding">
+            Добавить ингредиент
+          </button>
+        </div>
+
+        <div formArrayName="steps" class="steps-section">
+          <h3>Шаги приготовления</h3>
+          <div
+            *ngFor="let step of steps.controls; let i = index"
+            [formGroupName]="i"
+            class="step-group"
+          >
+            <div class="container-common">
+              <label for="step-{{ i }}">Шаг {{ i + 1 }}</label>
+              <textarea
+                id="step-{{ i }}"
+                formControlName="description"
+              ></textarea>
+            </div>
+            <button type="button" (click)="removeStep(i)" class="btn-adding">
+              Удалить шаг
+            </button>
+          </div>
+          <button type="button" (click)="addStep()" class="btn-adding">
+            Добавить шаг
+          </button>
         </div>
       </div>
 
-      <button mat-raised-button color="primary" (click)="addIngredient()">
-        Добавить ингредиент
-      </button>
-    </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="accent"
-        type="submit"
-        [disabled]="!recipeForm.valid"
-      >
-        {{
-          recipeForm.get("id")?.value ? "Сохранить изменения" : "Создать рецепт"
-        }}
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</form>
+      <div class="recipe-actions">
+        <button type="submit" [disabled]="!recipeForm.valid" class="btn-submit">
+          {{
+            recipeForm.get("id")?.value
+              ? "Сохранить изменения"
+              : "Создать рецепт"
+          }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

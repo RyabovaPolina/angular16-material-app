@@ -1,0 +1,126 @@
+.search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1; /* Позволяет элементам контейнера адаптироваться под размер экрана */
+}
+
+.add-container {
+  width: 168px;
+}
+
+.custom-search-field {
+  padding: 10px 12px;
+  font-size: 16px;
+  font-family: "IBM Plex Mono", serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 350px;
+  transition: border-color 0.3s;
+  height: 30px;
+}
+
+.custom-search-field::placeholder {
+  color: #999;
+}
+
+.custom-search-field:focus {
+  border-color: #fc9065;
+  outline: none;
+}
+
+.search-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  font-family: "IBM Plex Mono", serif;
+  color: white;
+  background-color: #fc9065;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+  height: 51px;
+}
+
+.search-button:hover {
+  background-color: #f87744;
+}
+
+.add-button {
+  border: 1px solid rgb(56, 56, 56);
+  padding: 8px 16px;
+  font-size: 16px;
+  font-family: "IBM Plex Mono", serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+  height: 51px;
+  width: auto;
+}
+
+/* Медиазапросы */
+
+@media (max-width: 992px) {
+  .search {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Для экранов до 768px */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    height: 40px;
+  }
+
+  .custom-search-field {
+    width: 70%;
+    padding: 10px;
+    font-size: 14px;
+    height: 20px;
+  }
+
+  .search-button {
+    width: 30%;
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .add-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+/* Дополнительно: для экранов до 480px */
+@media (max-width: 480px) {
+  .custom-search-field {
+    font-size: 12px;
+    height: 25px;
+  }
+
+  .search-button {
+    font-size: 12px;
+    height: 45px;
+  }
+
+  .add-button {
+    font-size: 12px;
+    height: 45px;
+  }
+}

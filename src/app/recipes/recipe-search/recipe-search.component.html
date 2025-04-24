@@ -1,0 +1,15 @@
+<div class="search">
+  <div class="search-container">
+    <input
+      type="text"
+      id="searchInput"
+      [(ngModel)]="searchTerm"
+      placeholder="Поиск рецепта"
+      class="custom-search-field"
+    />
+    <button (click)="onSearch()" class="search-button">Найти</button>
+  </div>
+  <div class="add-container">
+    <button (click)="onAdd()" class="add-button">+ Новый рецепт</button>
+  </div>
+</div>

@@ -1,61 +1,315 @@
 .recipe-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-height: 1000px;
-  overflow: auto;
-}
-
-mat-card-title {
-  color: white;
-  margin: 16px;
-}
-
-mat-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-form h1,
+.recipe-form h2 {
+  text-align: center;
+  color: #333;
 }
 
 .name-description-recipe {
   display: flex;
+  flex-direction: column;
   gap: 16px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.ingredient-group {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ingredient-group button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: background-color 0.3s;
+}
+
+.ingredient-group button:hover {
+  background-color: #d9363e;
+}
+
+.add-ingredient-button,
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-ingredient-button {
+  background-color: #1890ff;
+  margin-bottom: 15px;
+}
+
+.add-ingredient-button:hover {
+  background-color: #40a9ff;
+}
+
+.submit-button {
+  background-color: #52c41a;
+}
+
+.submit-button:hover {
+  background-color: #73d13d;
+}
+
+.steps-container {
+  margin-top: 20px;
+}
+
+.steps-container h2 {
+  margin-bottom: 10px;
+}
+
+.steps-container textarea {
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+}
+
+.cooking-time-servings {
+  display: flex;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.cooking-time-servings div {
+  flex: 1;
+}
+
+.ingredient-group button {
+  background-color: transparent;
+  color: #ff4d4f;
+  border: 1px solid #ff4d4f;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.3s;
+  height: 40px;
+}
+
+.ingredient-group button:hover {
+  background-color: #ff4d4f;
+  color: white;
 }
 
 .ingredient-group {
   display: flex;
-  gap: 16px;
+  align-items: flex-end;
 }
 
-mat-card-actions {
+.first,
+.second,
+.third {
   display: flex;
-  justify-content: center; /* Выравниваем по центру */
-  padding: 16px 0; /* Отступы для лучшего внешнего вида */
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
 }
 
-mat-card-subtitle {
+.image-preview {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.image-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.image-preview button {
+  position: absolute;
+  top: 5px;
+  right: 605px;
+  background: red;
+  padding: 8px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: black;
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.button-area {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.recipe-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-submit {
+  border: 1px solid black;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #bff6a3;
+}
+
+.btn-adding {
+  border: 1px solid black;
+  padding: 10px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-adding:hover {
+  background-color: #333;
+  color: aliceblue;
+}
+
+.container-common {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.step-group {
   margin-bottom: 10px;
 }
 
-button[type="submit"] {
-  width: 200px; /* Ширина кнопки для большего размера */
-  font-size: 16px; /* Увеличиваем размер шрифта */
-  padding: 12px; /* Увеличиваем отступы внутри кнопки */
-  margin-top: 16px; /* Добавляем отступ сверху */
-  transition: transform 0.2s ease; /* Плавный эффект при наведении */
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  /* Уменьшаем ширину полей ввода */
+  .container-common input,
+  .container-common textarea,
+  .container-common select {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* Уменьшаем размеры кнопок */
+  .btn-adding,
+  .btn-submit {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  /* Настройки для ингредиентов и шагов */
+  .ingredients-section,
+  .steps-section {
+    padding: 10px;
+  }
+
+  .ingredient-group,
+  .step-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .ingredient-group .first,
+  .ingredient-group .second,
+  .ingredient-group .third {
+    width: 100%;
+  }
+
+  /* Убираем большие отступы на мобильных */
+  .recipe-actions {
+    text-align: center;
+  }
 }
 
-button[type="submit"]:hover {
-  transform: scale(1.1); /* Увеличиваем кнопку при наведении */
+/* Адаптивность для маленьких экранов (мобильники) */
+@media (max-width: 480px) {
+  .recipe-form {
+    padding: 8px;
+  }
+
+  .btn-adding,
+  .btn-submit {
+    width: 100%;
+  }
+
+  /* Стиль для изображения */
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-button.mat-raised-button {
-  margin-top: 8px; /* Небольшой отступ сверху для кнопки добавления ингредиента */
-}
-
-button.mat-raised-button.color-primary {
-  width: 180px; /* Уменьшаем кнопку для добавления ингредиента */
-  font-size: 14px;
+@media (max-width: 1400px) {
+  .container {
+    margin: 60px 20px;
+  }
 }

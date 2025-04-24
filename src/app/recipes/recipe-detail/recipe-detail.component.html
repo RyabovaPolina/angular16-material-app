@@ -1,0 +1,74 @@
+<div class="recipe-detail">
+  <div class="button-area">
+    <a href="#" class="back-link" (click)="goBack()">← Назад к списку</a>
+  </div>
+  <div class="recipe-header">
+    <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image" />
+    <div class="right">
+      <div class="recipe-title-block">
+        <div class="recipe-title-name">
+          <h1 class="recipe-title">{{ recipe.title }}</h1>
+          <div class="recipe-flag">
+            <img
+              [src]="getFlagUrl(recipe.category)"
+              alt="Flag"
+              class="flag-icon"
+            />
+          </div>
+        </div>
+        <div class="recipe-title-button">
+          <button (click)="editRecipe(recipe)" class="title-button">
+            <img
+              src="/assets/icons8-редактировать-50.png"
+              alt="Редактировать"
+              width="20"
+              height="20"
+            />
+          </button>
+          <button (click)="deleteRecipe(recipe)" class="title-button">
+            <img
+              src="/assets/icons8-мусорка-50.png"
+              alt="Удалить"
+              width="20"
+              height="20"
+            />
+          </button>
+        </div>
+      </div>
+      <p class="recipe-description">{{ recipe.description }}</p>
+      <div class="recipe-info">
+        <div class="info">
+          <p class="desc">Время приготовления</p>
+          <p>{{ recipe.cookingTime }}</p>
+        </div>
+        <div class="info">
+          <p class="desc">Количество порций</p>
+          <p>{{ recipe.servings }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="recipe-content">
+    <div class="recipe-ingredients">
+      <h2>Ингредиенты</h2>
+      <ul class="recipe-ingredients">
+        <li *ngFor="let ingredient of recipe.ingredients">
+          <span class="ingredient-name">{{ ingredient.name }}</span>
+          <span class="ingredient-quantity">
+            {{ ingredient.quantity }} {{ ingredient.unit }}
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="recipe-steps">
+      <h2>Шаги приготовления</h2>
+      <ol class="recipe-steps">
+        <li *ngFor="let step of recipe.steps">{{ step.description }}</li>
+      </ol>
+    </div>
+  </div>
+</div>

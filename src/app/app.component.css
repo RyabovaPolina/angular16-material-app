@@ -1,8 +1,6 @@
 .main-page {
   display: flex;
-  flex-direction: row;
-  gap: 50px;
   justify-content: center;
-  margin-top: 20px;
-  margin-right: 20px;
+  width: 100%;
+  background-color: rgb(244, 247, 248);
 }

@@ -1,4 +1,5 @@
 import { Ingredient } from './ingredient.model';
+import { Step } from './step.model';
 
 export interface Recipe {
   id: number;
@@ -6,4 +7,8 @@ export interface Recipe {
   description: string;
   ingredients: Ingredient[];
   image?: string;
+  category: string;
+  steps: Step[];
+  cookingTime: string;
+  servings: number;
 }

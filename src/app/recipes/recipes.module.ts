@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipe-service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,9 +14,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import { RecipeFilterComponent } from './recipe-filter/recipe-filter.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 @NgModule({
-  declarations: [RecipeListComponent, RecipeFormComponent],
+  declarations: [
+    RecipeListComponent,
+    RecipeFormComponent,
+    RecipeSearchComponent,
+    RecipeFilterComponent,
+    RecipeDetailComponent,
+  ],
   imports: [
     CommonModule,
     RecipesRoutingModule,
@@ -29,6 +38,8 @@ import { MatListModule } from '@angular/material/list';
     MatProgressSpinnerModule,
     MatListModule,
     MatExpansionModule,
+    FormsModule,
+    RecipesRoutingModule,
   ],
   exports: [RecipeFormComponent, RecipeListComponent],
 })
